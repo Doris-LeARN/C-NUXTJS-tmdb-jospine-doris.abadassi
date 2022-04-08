@@ -107,60 +107,34 @@
             </div>
             <div id="divFilter3" class="pb-5 hidden pt-3 pl-6 pr-5">
                 <p class="mb-3 text-gray-400">Genres</p>
-                <div class="grid grid-cols-2 mb-4">
-                    <!--<div>--><a href="#" class="text-xs rounded-full border-2 px-4 py-1">Action</a><!--</div>
-                    <div>--><a href="#" class="text-xs rounded-full border-2 px-4 py-1">Animation</a><!--</div>
-                </div>
-                <div class="grid grid-cols-2 mb-4">
-                    <div>--><a href="#" class="text-xs rounded-full border-2 px-4 py-1">Aventure</a><!--</div>
-                    <div>--><a href="#" class="text-xs rounded-full border-2 px-4 py-1">Comédie</a><!--</div>
-                </div>
-                <div class="grid grid-cols-2 mb-4">
-                    <div>--><a href="#" class="text-xs rounded-full border-2 px-4 py-1">Crime</a><!--</div>
-                    <div>--><a href="#" class="text-xs rounded-full border-2 px-4 py-1">Documentaire</a><!--</div>
-                </div>
-                <div class="grid grid-cols-2 mb-4">
-                    <div>--><a href="#" class="text-xs rounded-full border-2 px-4 py-1">Drame</a><!--</div>
-                    <div>--><a href="#" class="text-xs rounded-full border-2 px-4 py-1">Familial</a><!--</div>
-                </div>
-                <div class="grid grid-cols-2 mb-4">
-                    <div>--><a href="#" class="text-xs rounded-full border-2 px-4 py-1">Fantastique</a><!--</div>
-                    <div>--><a href="#" class="text-xs rounded-full border-2 px-4 py-1">Guerre</a><!--</div>
-                </div>
-                <div class="grid grid-cols-2 mb-4">
-                    <div>--><a href="#" class="text-xs rounded-full border-2 px-4 py-1">Histoire</a><!--</div>
-                    <div>--><a href="#" class="text-xs rounded-full border-2 px-4 py-1">Horreur</a><!--</div>
-                </div>
-                <div class="grid grid-cols-2 mb-4">
-                    <div>--><a href="#" class="text-xs rounded-full border-2 px-4 py-1">Musique</a><!--</div>
-                    <div>--><a href="#" class="text-xs rounded-full border-2 px-4 py-1">Mystère</a><!--</div>
-                </div>
-                <div class="grid grid-cols-2 mb-4">
-                    <div>--><a href="#" class="text-xs rounded-full border-2 px-4 py-1">Romance</a><!--</div>
-                    <div>--><a href="#" class="text-xs rounded-full border-2 px-4 py-1">Science-Fiction</a><!--</div>
-                </div>
-                <div class="grid grid-cols-2 mb-4">
-                    <div>--><a href="#" class="text-xs rounded-full border-2 px-4 py-1">Thriller</a><!--</div>
-                    <div>--><a href="#" class="text-xs rounded-full border-2 px-4 py-1">Téléfilm</a><!--</div>
-                </div>
-                <div class="grid grid-cols-2 mb-4">
-                    <div>--><a href="#" class="text-xs rounded-full border-2 px-4 py-1">Western</a><!--</div>-->
+                <div class="grid grid-cols-2 mb-4 gap-4">
+                    <GenresList v-for="listGenre in listGenres" :listGenre = "listGenre" :key="listGenre.id" />
                 </div>
             </div>
         </div>
     </div>
 </template>
 
-<script>
+<style>
+    #divFilter3 a {
+        text-align: center !important;
+    }
+</style>
 
+<script>
+import GenresList from "./GenresList.vue";
 import { createPopper } from "@popperjs/core";
 
 export default {
     name: "dropdown",
-    data() {
-        return {
-            dropdownPopoverShow: false
-        }
+    components: {
+        GenresList
+    },
+    data: () => ({
+        dropdownPopoverShow: false,
+    }),
+    props: {
+        listGenres: Array
     },
     methods: {
         toggleDropdown: function () {
@@ -193,7 +167,6 @@ export default {
                 divFilter2.classList.remove('hidden')
                 divFilter3.classList.remove('hidden')
 
-
             } else if (chevronbottom.classList.contains('isnotclick')) {
                 chevronbottom.classList.remove('isclick')
                 chevronbottom.classList.add('isnotclick')
@@ -214,7 +187,7 @@ export default {
                 divFilter2.classList.add('hidden')
                 divFilter3.classList.add('hidden')
             }
-        },
+        }
     }
 }
 </script>

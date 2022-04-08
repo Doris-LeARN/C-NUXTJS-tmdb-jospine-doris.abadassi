@@ -35,7 +35,7 @@
             <p class="mb-3 text-gray-400">Trier les résultats par</p>
             <div class="relative inline-flex align-middle w-full">
                 <button
-                    class="dropdown-toggle px-5 py-2.5 bg-gray-200 text-gray-700 font-medium text-xs leading-tight rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg active:text-white transition duration-150 ease-in-out flex items-center whitespace-nowrap"
+                    class="dropdown-toggle px-5 py-2.5 p-3 bg-gray-200 text-gray-700 font-medium text-xs leading-tight rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg active:text-white transition duration-150 ease-in-out flex items-center whitespace-nowrap"
                     type="button"
                     v-on:click="toggleDropdown()"
                     ref="btnDropdownRef"

@@ -7,15 +7,13 @@
 </template>
 <script>
 import TheHeader from "../components/TheHeader.vue";
-import MoviesList from "../components/MoviesList.vue";
 import MoviesMain from "../components/MoviesMain.vue";
 export default {
   components: {
     TheHeader,
-    MoviesList,
     MoviesMain
   },
-  data: () => ({
+  /*data: () => ({
     listGenres: []
   }),
   beforeMount () {
@@ -28,7 +26,7 @@ export default {
       this.listGenres = data
       console.log(this.listGenres)
     }
-  }
+  }*/
 }
 </script>
 

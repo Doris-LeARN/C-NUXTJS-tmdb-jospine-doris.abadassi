@@ -4,12 +4,10 @@
         <div class="mt-8 grid grid-flow-row-dense grid-cols-4 grid-rows-3 gap-4">
             <div>
                 <SortMenuComponent class="mb-5"/>
-                <FilterMenuComponentVue />
+                <FilterMenuComponentVue :listGenres='listGenres'/>
             </div>
-            <div class="col-span-3 border border-red-700 pt-10 h-64">
-                <div class="grid grid-cols-5 gap-x-2 gap-y-2">
-                    
-                </div>
+            <div class="max-h-max col-span-3">
+                <MoviesPopularListVue :listMoviesPopular='listMoviesPopular'/>
             </div>
         </div>
     </div>
@@ -29,30 +27,37 @@
 <script>
 import { createPopper } from "@popperjs/core";
 import SortMenuComponent from "./SortMenuComponent.vue"
-import FilterMenuComponentVue from "./FilterMenuComponent.vue";
+import FilterMenuComponentVue from "./RightButton/FilterMenuComponent.vue"
+import MoviesPopularListVue from "./MoviesPopular/MoviesPopularList.vue";
 export default {  
     components: {
         SortMenuComponent,
-        FilterMenuComponentVue
+        FilterMenuComponentVue,
+        MoviesPopularListVue
     },
-    data() {
-        return {
-            dropdownPopoverShow: false,
-            listGenres: []
-        }
-    },
-    beforeMount () {
-        this.getListGenres()
+    data: () => ({
+        dropdownPopoverShow: false,
+        listGenres: [],
+        listMoviesPopular: []
+    }),
+    async beforeMount () {
+        this.listGenres = await this.getListGenres(),
+        this.listMoviesPopular = await this.getListMoviesPopular()
     },
     methods:{
-        
         async getListGenres () {
-            const res = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=b1d7d44c6fcbba479ced84ce5a1b6426&language=en-US') 
+            const res = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=b1d7d44c6fcbba479ced84ce5a1b6426&language=en-US')
             const data = await res.json()
-            this.listGenres = data
-            console.log(this.listGenres)
+            this.listGenres = data.genres
+            return this.listGenres
+        },
+        async getListMoviesPopular () {
+            const res = await fetch('https://api.themoviedb.org/3/movie/popular?api_key=b1d7d44c6fcbba479ced84ce5a1b6426&language=en-US')
+            const data = await res.json()
+            this.listMoviesPopular = data.results
+            console.log(this.listMoviesPopular)
+            return this.listMoviesPopular
         }
     }
-    
 }
 </script>
