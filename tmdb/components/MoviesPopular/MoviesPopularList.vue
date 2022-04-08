@@ -11,6 +11,7 @@ export default {
     },
     props: {
         listMoviesPopular: Array
-    }
+    },
+    
 }
 </script>
